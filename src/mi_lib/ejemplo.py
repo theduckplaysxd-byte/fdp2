@@ -1,20 +1,21 @@
 def saluda(nombre):
   print("¡Hola {}!".format(nombre))
-  filas = 5
-columnas = 5
+def tablero(dim, muros):
+    filas, columnas = dim
 
-muro = ((0,1), (0,2), (0,3), (0,4),
-        (1,1),
-        (2,1), (2,3),
-        (3,3),
-        (4,0), (4,1), (4,2), (4,3))
+    tab = [[' ' for numero in range(columnas)] for numero in range(filas)]
 
-laberinto = [[' ' for _ in range(columnas)] for _ in range(filas)]
+    # Validar que todos los muros están dentro de mi tablero
 
-for f, c in muro:
-    laberinto[f][c] = 'X'
+    for f, c in muros:
+        tab[f][c] = 'X'
 
-laberinto[4][4]= 'S'
+    # Plantear E y S como argumentos de la función
 
-for fila in laberinto:
-    print(fila)
+    tab[0][0] = 'E'
+    tab[filas - 1][columnas - 1] = 'S'
+
+    for fila in tab:
+        print(fila)
+
+    return tab
